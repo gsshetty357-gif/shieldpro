@@ -12,7 +12,6 @@
             --accent-glow: rgba(59, 130, 246, 0.4);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --danger: #ef4444;
         }
 
         body {
@@ -68,31 +67,6 @@
             line-height: 1.5;
         }
 
-        .pin-box {
-            display: none;
-            margin-top: 16px;
-        }
-
-        input[type="password"] {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 10px;
-            border: 1px solid #334155;
-            background: #0f172a;
-            color: #fff;
-            font-size: 16px;
-            text-align: center;
-            letter-spacing: 4px;
-            box-sizing: border-box;
-            outline: none;
-            transition: all 0.2s;
-        }
-
-        input[type="password"]:focus {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 12px var(--accent-glow);
-        }
-
         .btn {
             display: block;
             width: 100%;
@@ -112,11 +86,10 @@
 
         .btn:active { transform: scale(0.98); }
 
-        .error-msg {
-            color: var(--danger);
-            font-size: 12px;
-            margin-top: 8px;
-            display: none;
+        .btn-secondary {
+            background: #334155;
+            color: #cbd5e1;
+            display: none; /* Only shown if app not detected */
         }
 
         @keyframes pulse {
@@ -135,244 +108,58 @@
         <!-- Direct App Open Button -->
         <a id="openAppBtn" href="#" class="btn">Launch App</a>
 
-        <!-- Protected Download Form -->
-        <div id="pinBox" class="pin-box">
-            <p style="margin-bottom: 10px; font-weight: 500; color: #e2e8f0;">Enter Access Key to Download APK</p>
-            <input type="password" id="pinInput" placeholder="••••" maxlength="12">
-            <button class="btn" onclick="verifyPin()">Unlock & Download</button>
-            <div id="errorText" class="error-msg">Invalid Access Key. Contact Admin.</div>
-        </div>
+        <!-- Auto-Download Button -->
+        <a id="downloadBtn" href="#" class="btn btn-secondary">Download Shield Pro APK</a>
     </div>
 
     <script>
-        // 🚨 UPDATE THIS URL WHENEVER YOU RELEASE A NEW VERSION TAG
+        // APK Release URL
         const apkDownloadUrl = "https://github.com/gsshetty357-gif/shieldpro/releases/download/v5.01/ShieldPro.apk";
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const isFallback = urlParams.get('fallback') === 'true';
+
+        // Build fallback landing URL
+        const fallbackUrl = window.location.origin + window.location.pathname + window.location.search + 
+                            (window.location.search ? '&' : '?') + 'fallback=true';
         
-        // SHA-256 Hash of default Master PIN "SHIELD2026"
-        const MASTER_PIN_HASH = "8f3e264663efd5b3068e82a32195f00e28e833f443b74a1d94d7a04870c538a7"; 
+        // Build Intent String with S.browser_fallback_url
+        const intentUri = "intent://play" + window.location.search + 
+                          "#Intent;scheme=shieldpro;package=com.aistudio.shieldpro.vltq;S.browser_fallback_url=" + 
+                          encodeURIComponent(fallbackUrl) + ";end";
 
-        const queryString = window.location.search;
-        const intentUri = "intent://play" + queryString + "#Intent;scheme=shieldpro;package=com.aistudio.shieldpro.vltq;end";
         document.getElementById("openAppBtn").href = intentUri;
+        document.getElementById("downloadBtn").href = apkDownloadUrl;
 
         window.onload = function() {
-            let startTime = Date.now();
-            window.location.replace(intentUri);
-
-            // If app is not installed, show PIN access form after 1.5s
-            setTimeout(function() {
-                if (Date.now() - startTime < 3000) {
-                    document.getElementById("titleText").innerText = "Shield Pro Access";
-                    document.getElementById("statusText").innerText = "App not detected on device.";
-                    document.getElementById("openAppBtn").style.display = "none";
-                    document.getElementById("pinBox").style.display = "block";
-                }
-            }, 1500);
-        };
-
-        // SHA-256 Utility Function
-        async function sha256(str) {
-            const buffer = new TextEncoder().encode(str);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
-        async function verifyPin() {
-            const userPin = document.getElementById("pinInput").value.trim();
-            const inputHash = await sha256(userPin);
-
-            // Calculate today's dynamic PIN (Formula: Day * 7 + Month + "SHIELD")
-            const today = new Date();
-            const dynamicPinStr = (today.getDate() * 7 + (today.getMonth() + 1)) + "SHIELD";
-            const dynamicHash = await sha256(dynamicPinStr);
-
-            if (inputHash === MASTER_PIN_HASH || inputHash === dynamicHash) {
-                document.getElementById("errorText").style.display = "none";
-                document.getElementById("statusText").innerText = "Access Granted! Starting download...";
-                window.location.href = apkDownloadUrl;
+            if (isFallback) {
+                // If fallback triggered, directly trigger APK download
+                triggerDownload();
             } else {
-                document.getElementById("errorText").style.display = "block";
+                // First load: Try launching the app
+                let startTime = Date.now();
+                window.location.replace(intentUri);
+
+                // Safe fallback in case intent fails silently
+                setTimeout(function() {
+                    if (Date.now() - startTime < 3000) {
+                        triggerDownload();
+                    }
+                }, 1500);
             }
-        }
-    </script>
-</body>
-</html>            margin: 0 0 20px 0;
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .pin-box {
-            display: none;
-            margin-top: 16px;
-        }
-
-        input[type="password"] {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 10px;
-            border: 1px solid #334155;
-            background: #0f172a;
-            color: #fff;
-            font-size: 16px;
-            text-align: center;
-            letter-spacing: 4px;
-            box-sizing: border-box;
-            outline: none;
-            transition: all 0.2s;
-        }
-
-        input[type="password"]:focus {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 12px var(--accent-glow);
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 12px 0;
-            margin-top: 12px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            box-sizing: border-box;
-            transition: transform 0.1s, opacity 0.2s;
-        }
-
-        .btn:active { transform: scale(0.98); }
-
-        .error-msg {
-            color: var(--danger);
-            font-size: 12px;
-            margin-top: 8px;
-            display: none;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="card">
-        <div class="icon-container">🛡️</div>
-        <h2 id="titleText">Opening Shield Pro</h2>
-        <p id="statusText">Verifying app installation...</p>
-
-        <!-- Direct App Open Button -->
-        <a id="openAppBtn" href="#" class="btn">Launch App</a>
-
-        <!-- Protected Download Form -->
-        <div id="pinBox" class="pin-box">
-            <p style="margin-bottom: 10px; font-weight: 500; color: #e2e8f0;">Enter Access Key to Download APK</p>
-            <input type="password" id="pinInput" placeholder="••••" maxlength="12">
-            <button class="btn" onclick="verifyPin()">Unlock & Download</button>
-            <div id="errorText" class="error-msg">Invalid Access Key. Contact Admin.</div>
-        </div>
-    </div>
-
-    <script>
-        const apkDownloadUrl = "https://github.com/gsshetty357-gif/shieldpro/releases/download/v1.0/ShieldPro.apk";
-        
-        // SHA-256 Hash of default Master PIN "SHIELD2026"
-        const MASTER_PIN_HASH = "8f3e264663efd5b3068e82a32195f00e28e833f443b74a1d94d7a04870c538a7"; 
-
-        const queryString = window.location.search;
-        const intentUri = "intent://play" + queryString + "#Intent;scheme=shieldpro;package=com.aistudio.shieldpro.vltq;end";
-        document.getElementById("openAppBtn").href = intentUri;
-
-        window.onload = function() {
-            let startTime = Date.now();
-            window.location.replace(intentUri);
-
-            // If app is not installed, show PIN access form after 1.5s
-            setTimeout(function() {
-                if (Date.now() - startTime < 3000) {
-                    document.getElementById("titleText").innerText = "Shield Pro Access";
-                    document.getElementById("statusText").innerText = "App not detected on device.";
-                    document.getElementById("openAppBtn").style.display = "none";
-                    document.getElementById("pinBox").style.display = "block";
-                }
-            }, 1500);
         };
 
-        // SHA-256 Utility Function
-        async function sha256(str) {
-            const buffer = new TextEncoder().encode(str);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
-        async function verifyPin() {
-            const userPin = document.getElementById("pinInput").value.trim();
-            const inputHash = await sha256(userPin);
-
-            // Calculate today's dynamic PIN (Formula: Day * 7 + Month + "SHIELD")
-            const today = new Date();
-            const dynamicPinStr = (today.getDate() * 7 + (today.getMonth() + 1)) + "SHIELD";
-            const dynamicHash = await sha256(dynamicPinStr);
-
-            if (inputHash === MASTER_PIN_HASH || inputHash === dynamicHash) {
-                document.getElementById("errorText").style.display = "none";
-                document.getElementById("statusText").innerText = "Access Granted! Starting download...";
-                window.location.href = apkDownloadUrl;
-            } else {
-                document.getElementById("errorText").style.display = "block";
-            }
-        }
-    </script>
-</body>
-</html>        
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.8; }
-        }
-    </style>
-    <script>
-        var apkDownloadUrl = "https://github.com/gsshetty357-gif/shieldpro/releases/download/v1.0/ShieldPro.apk";
-
-        window.onload = function() {
-            var queryString = window.location.search;
-            var intentUri = "intent://play" + queryString + "#Intent;scheme=shieldpro;package=com.aistudio.shieldpro.vltq;end";
+        function triggerDownload() {
+            document.getElementById("titleText").innerText = "Shield Pro Download";
+            document.getElementById("statusText").innerText = "App not detected. Starting APK download...";
+            document.getElementById("openAppBtn").style.display = "none";
             
-            var start = Date.now();
+            const dlBtn = document.getElementById("downloadBtn");
+            dlBtn.style.display = "block";
             
-            // Try opening the app immediately
-            window.location.replace(intentUri);
-
-            // Fallback: If app is NOT installed, download the APK after 1.5s
-            setTimeout(function() {
-                if (Date.now() - start < 3000) {
-                    document.getElementById("statusText").innerText = "App not detected. Starting APK download...";
-                    window.location.href = apkDownloadUrl;
-                }
-            }, 1500);
-        };
-    </script>
-</head>
-<body>
-    <div class="container">
-        <div class="shield-icon">🛡️</div>
-        <h2>Opening Shield Pro</h2>
-        <p id="statusText">Routing to your secure study session...</p>
-        <a id="manualLink" href="#" class="btn">Open App Manually</a>
-        <a id="downloadLink" href="https://github.com/gsshetty357-gif/shieldpro/releases/download/v1.0/ShieldPro.apk" class="btn btn-secondary">Download Shield Pro APK</a>
-    </div>
-    
-    <script>
-        var intentUri = "intent://play" + window.location.search + "#Intent;scheme=shieldpro;package=com.aistudio.shieldpro.vltq;end";
-        document.getElementById("manualLink").href = intentUri;
-        document.getElementById("downloadLink").href = apkDownloadUrl;
+            // Automatically start the download
+            window.location.href = apkDownloadUrl;
+        }
     </script>
 </body>
 </html>
