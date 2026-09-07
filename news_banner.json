@@ -1,12 +1,15 @@
 {
+  "banner_id": "v5.01_welcome",
   "show_banner": true,
   "banner_title": "🚀 Shield Pro V5.01 Live!",
-  "banner_text": "Dynamic activation guards & security modules are online.",
-  "banner_image_url": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWZ4bW9sczhqOW9sbzJqMXU4OWM3aDZleWF0YnN0ZzhvNDlxeHpxMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/v8YmD1f6Wf7N90m6fS/giphy.gif",
+  "banner_text": "Dynamic activation guards are now fully online!",
+  "banner_image_url": "https://media.giphy.com/media/v8YmD1f6Wf7N90m6fS/giphy.gif",
   
   "popup_title": "Welcome to Shield Pro V5.01 🛡️",
-  "popup_description": "We have released a major upgrade!\n\n• Dynamic Activation Shield Engine\n• Deep-Link Restoration & Anti-Leak Guards\n• Live Remote Control Announcements\n\nEnjoy an uninterrupted, distraction-free study environment.",
-  "popup_image_url": "https://giphy.com/gifs/ADi31XUhPG9tFr38DW",
+  "popup_description": "We have released a major upgrade!\n\n• Dynamic Activation Shield Engine\n• Live Remote Control Announcements\n• Leak-Proof Isolated Study Vault",
+  "popup_image_url": "https://media.giphy.com/media/S6uLThdZ7AHEBfO9pG/giphy.gif",
+  
+  "show_action_button": false,
   "action_button_text": "View Release Info",
-  "action_url": "https://github.com/gsshetty37-gif/shieldpro"
+  "action_url": "https://github.com/gsshetty357-gif/shieldpro"
 }
