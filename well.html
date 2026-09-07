@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Night to My Dear Divya 😘</title>
+    <style>
+        /* ==========================================================================
+           1. ROMANTIC PALETTE & BASE STYLES
+           ========================================================================== */
+        :root {
+            --color-night-sky: #090214;
+            --color-rose-gold: #f472b6;
+            --color-champagne-gold: #fde68a;
+            --color-moonlight: #f1f5f9;
+            --color-purple-aura: rgba(168, 85, 247, 0.25);
+            --color-pink-aura: rgba(244, 114, 182, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: var(--color-night-sky);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* ==========================================================================
+           2. ROMANTIC MIDNIGHT BANNER CONTAINER
+           ========================================================================== */
+        .divya-night-banner {
+            position: relative;
+            width: 100%;
+            max-width: 680px;
+            background: linear-gradient(135deg, #0f051d 0%, #1c0b36 50%, #120324 100%);
+            border-radius: 32px;
+            padding: 44px 36px;
+            border: 1px solid rgba(244, 114, 182, 0.35);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 
+                        0 0 50px rgba(244, 114, 182, 0.2),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        /* AMBIENT GLOWING AURAS */
+        .aura-purple {
+            position: absolute;
+            top: -40%;
+            left: -30%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--color-purple-aura) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulseAura 8s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        .aura-pink {
+            position: absolute;
+            bottom: -40%;
+            right: -30%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--color-pink-aura) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulseAura 10s ease-in-out infinite alternate-reverse;
+            pointer-events: none;
+        }
+
+        @keyframes pulseAura {
+            0% { transform: scale(0.85); opacity: 0.6; }
+            100% { transform: scale(1.15); opacity: 1; }
+        }
+
+        /* FLOATING SPARKLE STARS */
+        .star {
+            position: absolute;
+            background-color: var(--color-champagne-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--color-champagne-gold);
+            animation: twinkle 3s ease-in-out infinite alternate;
+        }
+        .s1 { top: 15%; left: 12%; width: 3px; height: 3px; animation-delay: 0s; }
+        .s2 { top: 25%; right: 15%; width: 4px; height: 4px; animation-delay: 0.8s; }
+        .s3 { bottom: 20%; left: 18%; width: 3px; height: 3px; animation-delay: 1.5s; }
+        .s4 { bottom: 30%; right: 12%; width: 5px; height: 5px; animation-delay: 2.2s; }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.4); }
+        }
+
+        /* ==========================================================================
+           3. CONTENT LAYOUT & TYPOGRAPHY
+           ========================================================================== */
+        .banner-content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* TOP ROMANTIC BADGE */
+        .night-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(244, 114, 182, 0.12);
+            border: 1px solid rgba(244, 114, 182, 0.4);
+            padding: 7px 18px;
+            border-radius: 50px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fbcfe8;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.15);
+        }
+
+        .moon-icon {
+            font-size: 13px;
+        }
+
+        /* MAIN HEADING FOR DIVYA */
+        .main-heading {
+            font-size: 34px;
+            font-weight: 900;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 0%, #fbcfe8 40%, #f472b6 80%, #fde68a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(244, 114, 182, 0.3);
+        }
+
+        /* SWEET MESSAGE BOX */
+        .message-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(244, 114, 182, 0.25);
+            border-radius: 20px;
+            padding: 20px 24px;
+            max-width: 520px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .message-text {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: #e2e8f0;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        /* FLOATING HEARTS DECORATION */
+        .hearts-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            margin-top: 4px;
+        }
+
+        .heart-item {
+            display: inline-block;
+            animation: floatHeart 3s ease-in-out infinite alternate;
+        }
+        .h1 { animation-delay: 0s; }
+        .h2 { animation-delay: 0.6s; }
+        .h3 { animation-delay: 1.2s; }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-6px) scale(1.15); }
+        }
+
+        /* FOOTER BRANDING */
+        .footer-note {
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fbcfe8;
+            font-weight: 800;
+            margin-top: 8px;
+            background: rgba(244, 114, 182, 0.12);
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            padding: 8px 22px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.2);
+        }
+
+        .highlight-gold {
+            color: var(--color-champagne-gold);
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="divya-night-banner">
+        <!-- AMBIENT AURAS -->
+        <div class="aura-purple"></div>
+        <div class="aura-pink"></div>
+
+        <!-- STARRY NIGHT SPARKLES -->
+        <div class="star s1"></div>
+        <div class="star s2"></div>
+        <div class="star s3"></div>
+        <div class="star s4"></div>
+
+        <!-- MAIN BANNER CONTENT -->
+        <div class="banner-content">
+            
+            <!-- TOP BADGE -->
+            <div class="night-badge">
+                <span class="moon-icon">🌙</span>
+                A Special Starlit Wish
+            </div>
+
+            <!-- MAIN DEDICATED HEADING -->
+            <h1 class="main-heading">
+                Happy Night to My Dear Divya 😘!!
+            </h1>
+
+            <!-- ROMANTIC CARD -->
+            <div class="message-card">
+                <p class="message-text">
+                    "May your night be as peaceful and beautiful as the moon, and may your dreams be filled with magic, happiness, and endless joy."
+                </p>
+            </div>
+
+            <!-- FLOATING HEARTS -->
+            <div class="hearts-row">
+                <span class="heart-item h1">✨</span>
+                <span class="heart-item h2">💖</span>
+                <span class="heart-item h3">✨</span>
+            </div>
+
+            <!-- FOOTER SIGNATURE -->
+            <div class="footer-note">
+                With Love, Your Buddy <span class="highlight-gold">Ganesh ❤️</span>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
