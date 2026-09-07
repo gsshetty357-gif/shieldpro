@@ -13,7 +13,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #0f172a; /* Premium Dark Slate */
+            background-color: #0f172a;
             color: #f8fafc;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
@@ -25,10 +25,11 @@
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             max-width: 90%;
+            width: 340px;
         }
         .shield-icon {
             font-size: 48px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             display: inline-block;
             animation: pulse 2s infinite ease-in-out;
         }
@@ -36,25 +37,31 @@
             margin: 0 0 8px 0;
             font-size: 20px;
             font-weight: 700;
-            letter-spacing: 0.5px;
         }
         p {
-            margin: 0 0 24px 0;
+            margin: 0 0 20px 0;
             font-size: 14px;
             color: #94a3b8;
+            line-height: 1.4;
         }
-        .manual-btn {
-            display: inline-block;
+        .btn {
+            display: block;
             background: #2563eb;
             color: white;
             text-decoration: none;
-            padding: 12px 24px;
+            padding: 12px 20px;
             border-radius: 8px;
             font-weight: 600;
             font-size: 14px;
+            margin-bottom: 10px;
             transition: background 0.2s;
         }
-        .manual-btn:hover { background: #1d4ed8; }
+        .btn:hover { background: #1d4ed8; }
+        .btn-secondary {
+            background: #334155;
+            color: #cbd5e1;
+        }
+        .btn-secondary:hover { background: #475569; }
         
         @keyframes pulse {
             0% { transform: scale(0.95); opacity: 0.8; }
@@ -63,12 +70,24 @@
         }
     </style>
     <script>
+        var apkDownloadUrl = "https://github.com/gsshetty357-gif/shieldpro/releases/download/v1.0/ShieldPro.apk";
+
         window.onload = function() {
             var queryString = window.location.search;
             var intentUri = "intent://play" + queryString + "#Intent;scheme=shieldpro;package=com.aistudio.shieldpro.vltq;end";
             
-            // Execute redirect immediately
+            var start = Date.now();
+            
+            // Try opening the app immediately
             window.location.replace(intentUri);
+
+            // Fallback: If app is NOT installed, download the APK after 1.5s
+            setTimeout(function() {
+                if (Date.now() - start < 3000) {
+                    document.getElementById("statusText").innerText = "App not detected. Starting APK download...";
+                    window.location.href = apkDownloadUrl;
+                }
+            }, 1500);
         };
     </script>
 </head>
@@ -76,12 +95,15 @@
     <div class="container">
         <div class="shield-icon">🛡️</div>
         <h2>Opening Shield Pro</h2>
-        <p>Routing to your secure study session...</p>
-        <a id="manualLink" href="#" class="manual-btn">Open App Manually</a>
+        <p id="statusText">Routing to your secure study session...</p>
+        <a id="manualLink" href="#" class="btn">Open App Manually</a>
+        <a id="downloadLink" href="https://github.com/gsshetty357-gif/shieldpro/releases/download/v1.0/ShieldPro.apk" class="btn btn-secondary">Download Shield Pro APK</a>
     </div>
     
     <script>
-        document.getElementById("manualLink").href = "intent://play" + window.location.search + "#Intent;scheme=shieldpro;package=com.aistudio.shieldpro.vltq;end";
+        var intentUri = "intent://play" + window.location.search + "#Intent;scheme=shieldpro;package=com.aistudio.shieldpro.vltq;end";
+        document.getElementById("manualLink").href = intentUri;
+        document.getElementById("downloadLink").href = apkDownloadUrl;
     </script>
 </body>
 </html>
