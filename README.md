@@ -4,8 +4,10 @@
 
   # 🛡️ Shield Pro — The Sovereign Academic Study Operating System
 
-  **Engineered for Serious Aspirants & Exam Rankers**  
+  **The Zero-Distraction Educational Workstation for Serious Aspirants**  
   *(UPSC CSE, CA Final/Inter, JEE Advanced, NEET-UG, CFA, Gate & Professional Exams)*
+
+  <br />
 
   [![Release](https://img.shields.io/badge/Release-V5.01-d4af37?style=for-the-badge&logo=android&logoColor=black)](https://github.com/gsshetty357-gif/shieldpro/releases)
   [![Platform](https://img.shields.io/badge/Platform-Android%208.0%2B-3b82f6?style=for-the-badge&logo=android)](https://github.com/gsshetty357-gif/shieldpro)
@@ -22,12 +24,6 @@
 
 </div>
 
-## 📌 Executive Overview
-
-**Shield Pro** is an offline-first, distraction-quarantined academic operating system designed for competitive exam rankers. Modern video platforms are weaponized with recommendation algorithms, clickbait feeds, shorts traps, and infinite scrolling loops designed to hijack a student's attention.
-
-**Shield Pro** solves this by establishing a **Zero-Trust Whitelist Sandbox**. It isolates educational channels, blocks all algorithmic traps at the network layer, accelerates lectures with calibrated DSP audio processing, and unifies local offline media with online video playlists in a single high-security vault.
-
 ---
 
 ## 🏛️ Architect & Engineering Credits
@@ -42,11 +38,35 @@
 
 ---
 
-## ⚡ Key System Capabilities & Architectural Systems
+## 📊 Comparison: YouTube App vs. Shield Pro
 
-### 1. 🛡️ Zero-Trust Whitelist Engine (How It Works)
+| Feature | Standard YouTube App | 🛡️ Shield Pro OS |
+| :--- | :---: | :---: |
+| **Home Feed / Recommendations** | ❌ Infinite Distraction Traps | ✅ **100% Quarantined / Disabled** |
+| **Shorts / Reels Interception** | ❌ Addictive Short-Form Loops | ✅ **Blocked at Network Layer** |
+| **Skip Silence Audio DSP** | ❌ None | ✅ **250ms Calibrated DSP Engine** |
+| **Real-time Voice Notes** | ❌ None | ✅ **Mic Auto-Pause & Sync** |
+| **Unified Local & Online Vault** | ❌ Separated / Unorganized | ✅ **Integrated Room Subject Vault** |
+| **A-B Segment Looper** | ❌ None | ✅ **Micro-second Loop Repeater** |
+| **Pomodoro Focus Timer** | ❌ None | ✅ **Built-in Study Time Log** |
+
+---
+
+## ⚡ Core Architectural Systems
++---------------------------------------------------------------------------------+
+| SHIELD PRO KERNEL |
++------------------------------------+--------------------------------------------+
+| ZERO-TRUST NETWORK LAYER | AUDIO & VIDEO ENGINE |
+| - Channel Whitelist Isolation | - Media3 ExoPlayer + Custom AudioSink |
+| - Anti-Shorts URL Interceptor | - 250ms Skip Silence DSP Engine |
+| - Anti-Clickbait DOM Sanitizer | - Hardware Accelerated WebView (GPU) |
++------------------------------------+--------------------------------------------+
+| PERSISTENCE & STATE LAYER |
+| - Room SQLite Database (WAL Mode) | Kotlin Coroutines + StateFlow Lifecycle |
++---------------------------------------------------------------------------------+
+### 1. 🛡️ Zero-Trust Whitelist Engine
 * **Algorithmic Quarantine:** Home feeds, search bars, trending pages, and "up next" autoplay recommendations are 100% trapped and non-existent.
-* **Verified Faculty Isolation:** Accessing an approved channel grants a pure, chronological playlist view of marathon lectures, subject modules, and chapter series—nothing else.
+* **Verified Faculty Isolation:** Accessing an approved channel grants a pure, chronological playlist view of marathon lectures, subject modules, and chapter series.
 * **Network-Level Anti-Shorts Interception:** Any short-form media link (`/shorts/`) is trapped and permanently blocked before a single frame can render.
 
 ### 2. ⚡ Calibrated Audio DSP (250ms Skip Silence Engine)
@@ -69,10 +89,6 @@
 * **Integrated Pomodoro Engine:** Work-rest cycles with ambient high-tech audio cues.
 * **Automated Log Engine:** Tracks and records total focused study seconds per lecture into local SQLite storage for daily productivity analytics.
 
-### 7. 🖼️ Native System Picture-in-Picture (PiP) & Media Controls
-* **PiP Float Engine:** Seamlessly transitions into native System PiP mode upon minimizing or switching apps.
-* **Remote Actions & Unplug Protection:** Includes playback remote actions and `ACTION_AUDIO_BECOMING_NOISY` listener to automatically pause video when headphones are disconnected.
-
 ---
 
 ## 🛠️ Technology Stack & Architecture
@@ -80,12 +96,12 @@
 | Layer | Technology Used |
 | :--- | :--- |
 | **Language** | 100% Modern Kotlin |
-| **UI Framework** | Jetpack Compose (Material Design 3 Glassmorphism) |
-| **Local Persistence** | SQLite Room Database with KSP |
+| **UI Framework** | Jetpack Compose (Material Design 3 Glassmorphic Interface) |
+| **Local Persistence** | SQLite Room Database with KSP Annotation Processing |
 | **Media Player Engine** | Jetpack Media3 (ExoPlayer) + Custom AudioSink DSP |
 | **Async & Reactive Flow** | Kotlin Coroutines + `StateFlow` + `collectAsStateWithLifecycle` |
 | **Web Engine** | Hardware-Accelerated WebView (`LAYER_TYPE_HARDWARE`) + Bi-Directional AndroidBridge |
-| **Architecture** | MVVM + Clean Repository Pattern |
+| **Architecture Pattern** | MVVM + Clean Repository Pattern |
 
 ---
 
@@ -94,7 +110,7 @@
 ### Direct APK Download
 You can download the compiled installer directly from GitHub Releases:
 
-* 📦 **Latest Version:** [Shield Pro V5.01 Release](https://github.com/gsshetty357-gif/shieldpro/releases/latest/download/app-release.apk)
+* 📦 **Latest Version:** [Shield Pro V5.01 Release APK](https://github.com/gsshetty357-gif/shieldpro/releases/latest/download/app-release.apk)
 * 🔗 **All Releases:** [GitHub Releases Page](https://github.com/gsshetty357-gif/shieldpro/releases)
 
 ---
